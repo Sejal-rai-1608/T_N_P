@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:turfnpark/pages/login_page.dart';
 
 class GetStartedPage extends StatelessWidget {
@@ -32,7 +33,10 @@ class GetStartedPage extends StatelessWidget {
 
               // const SizedBox(height: 10),
               Expanded(
-                child: Image.asset("assets/Cricket.png", fit: BoxFit.contain),
+                child: SvgPicture.asset(
+                  "assets/images/Cricket1.svg",
+                  fit: BoxFit.contain,
+                ),
               ),
 
               const SizedBox(height: 10),

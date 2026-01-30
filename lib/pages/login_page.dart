@@ -1,7 +1,35 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:turfnpark/pages/forgot_password.dart';
+import 'package:turfnpark/pages/signup_page.dart';
+import 'package:turfnpark/controller/CTextfield.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  late TextEditingController usernameController;
+  late TextEditingController passwordController;
+  bool hidePassword = true;
+
+  @override
+  void initState() {
+    super.initState();
+    usernameController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,32 +68,37 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 40),
-
-                TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Image.asset("assets/Icon.png"),
-                    hintText: 'Enter your username',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                  ),
-                ),
-
                 const SizedBox(height: 20),
 
                 /// Password Field
-                // Image.asset("assets/key.png", height: 24),
+                // Image.asset("assets/key.svg", height: 24),
                 const SizedBox(width: 12),
-                TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    prefixIcon: Image.asset("assets/key.png"),
-                    suffixIcon: Image.asset("assets/eye.png"),
-                    hintText: 'Enter your password',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(14),
+                CTextfield(
+                  hintText: "Username",
+                  prefixSvg: "assets/icons/Icon.svg",
+                  controller: usernameController,
+
+                  // suffixIcon: SvgPicture.asset(
+                  //   "assets/icons/eye.svg",
+                  //   height: 12,
+                  //   width: 12,
+                  // ),
+                ),
+                CTextfield(
+                  hintText: "New Password",
+                  prefixSvg: "assets/icons/key.svg",
+                  controller: passwordController,
+                  obscureText: hidePassword,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      hidePassword ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.green,
                     ),
+                    onPressed: () {
+                      setState(() {
+                        hidePassword = !hidePassword;
+                      });
+                    },
                   ),
                 ),
 
@@ -74,12 +107,23 @@ class LoginPage extends StatelessWidget {
                 /// Forgot password
                 Align(
                   alignment: Alignment.bottomRight, // ✅ correct alignment
-                  child: Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xff00BE76),
-                      decoration: TextDecoration.underline,
+                  child: RichText(
+                    text: TextSpan(
+                      text: 'Forgot Password?',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xff00BE76),
+                        decoration: TextDecoration.underline,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ForgotPassword(),
+                            ),
+                          );
+                        },
                     ),
                   ),
                 ),
@@ -91,7 +135,9 @@ class LoginPage extends StatelessWidget {
                   width: double.infinity,
                   height: 52,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // MaterialPageRoute(builder: (context) => SignupPage());
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xff00BE76),
                       shape: RoundedRectangleBorder(
@@ -123,11 +169,15 @@ class LoginPage extends StatelessWidget {
                             color: Color(0xff00BE76),
                             fontWeight: FontWeight.bold,
                           ),
-                          // optional click action
-                          // recognizer: TapGestureRecognizer()
-                          //   ..onTap = () {
-                          //     // Navigate to signup page
-                          //   },
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SignupPage(),
+                                ),
+                              );
+                            },
                         ),
                       ],
                     ),
@@ -145,15 +195,14 @@ class LoginPage extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                /// Social Icons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("assets/google.png", height: 50),
+                    Image.asset("assets/logo/facebook.png", height: 50),
                     const SizedBox(width: 20),
-                    Image.asset("assets/facebook.png", height: 50),
+                    SvgPicture.asset("assets/logo/google.svg", height: 50),
                     const SizedBox(width: 20),
-                    Image.asset("assets/apple.png", height: 50),
+                    SvgPicture.asset("assets/logo/apple.svg", height: 50),
                   ],
                 ),
 

@@ -1,0 +1,137 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:turfnpark/controller/CTextfield.dart';
+import 'package:turfnpark/pages/signup_page.dart';
+
+class ConfirmPassword extends StatefulWidget {
+  const ConfirmPassword({super.key});
+
+  @override
+  State<ConfirmPassword> createState() => _ConfirmPasswordState();
+}
+
+class _ConfirmPasswordState extends State<ConfirmPassword> {
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  bool hidePassword = true;
+  bool hideConfirmPassword = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_outlined, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(
+              context,
+              MaterialPageRoute(builder: (context) => SignupPage()),
+            );
+          },
+        ),
+
+        title: Text(
+          "Save Password",
+          style: TextStyle(
+            color: Color(0xff00BE76),
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      body: Column(
+        //crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(height: 20),
+          Text(
+            "Verify with the OTP to change Password \n Sent to 91****6848",
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: CTextfield(
+              hintText: "New Password",
+              prefixSvg: "assets/icons/key.svg",
+              controller: passwordController,
+              obscureText: hidePassword,
+              suffixIcon: IconButton(
+                icon: Icon(
+                  hidePassword ? Icons.visibility_off : Icons.visibility,
+                  color: Color(0xff00BE76),
+                ),
+                onPressed: () {
+                  setState(() {
+                    hidePassword = !hidePassword;
+                  });
+                },
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+
+          /// CONFIRM PASSWORD
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: CTextfield(
+              hintText: "Confirm Password",
+              prefixSvg: "assets/icons/key.svg",
+              controller: confirmPasswordController,
+              obscureText: hideConfirmPassword,
+              suffixIcon: IconButton(
+                icon: Icon(
+                  hideConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                  color: Color(0xff00BE76),
+                ),
+                onPressed: () {
+                  setState(() {
+                    hideConfirmPassword = !hideConfirmPassword;
+                  });
+                },
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 30),
+
+          /// SIGN UP BUTTON
+          SizedBox(
+            width: 388,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () {
+                // signup logic
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff00BE76),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
+              ),
+              child: const Text(
+                "Save Password",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+}

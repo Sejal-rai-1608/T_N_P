@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:turfnpark/Custom/CTextfield.dart';
+import 'package:turfnpark/controller/CTextfield.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -35,9 +37,9 @@ class _SignupPageState extends State<SignupPage> {
                 Text(
                   "Sign - Up",
                   style: TextStyle(
-                    fontSize: 26,
+                    fontSize: 32,
                     fontWeight: FontWeight.bold,
-                    color: Colors.green.shade600,
+                    color: Color(0xff00BE76),
                   ),
                 ),
 
@@ -46,14 +48,14 @@ class _SignupPageState extends State<SignupPage> {
                 /// USERNAME
                 CTextfield(
                   hintText: "Username",
-                  prefixIcon: Image.asset("assets/Icon.png"),
+                  prefixSvg: "assets/icons/Icon.svg",
                   controller: usernameController,
                 ),
 
                 /// EMAIL
                 CTextfield(
                   hintText: "Email Id",
-                  prefixIcon: Icons.email_outlined,
+                  prefixSvg: "assets/icons/mail.svg",
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
                 ),
@@ -61,7 +63,7 @@ class _SignupPageState extends State<SignupPage> {
                 /// CONTACT
                 CTextfield(
                   hintText: "Contact Number",
-                  prefixIcon: Icons.phone_outlined,
+                  prefixSvg: "assets/icons/contact.svg",
                   keyboardType: TextInputType.phone,
                   controller: phoneController,
                 ),
@@ -69,15 +71,13 @@ class _SignupPageState extends State<SignupPage> {
                 /// PASSWORD
                 CTextfield(
                   hintText: "New Password",
-                  prefixIcon: Icons.key,
+                  prefixSvg: "assets/icons/key.svg",
                   controller: passwordController,
                   obscureText: hidePassword,
                   suffixIcon: IconButton(
                     icon: Icon(
-                      hidePassword
-                          ? Icons.visibility_off
-                          : Icons.visibility,
-                      color: Colors.green,
+                      hidePassword ? Icons.visibility_off : Icons.visibility,
+                      color: Color(0xff00BE76),
                     ),
                     onPressed: () {
                       setState(() {
@@ -90,7 +90,7 @@ class _SignupPageState extends State<SignupPage> {
                 /// CONFIRM PASSWORD
                 CTextfield(
                   hintText: "Confirm Password",
-                  prefixIcon: Icons.key,
+                  prefixSvg: "assets/icons/key.svg",
                   controller: confirmPasswordController,
                   obscureText: hideConfirmPassword,
                   suffixIcon: IconButton(
@@ -98,7 +98,7 @@ class _SignupPageState extends State<SignupPage> {
                       hideConfirmPassword
                           ? Icons.visibility_off
                           : Icons.visibility,
-                      color: Colors.green,
+                      color: Color(0xff00BE76),
                     ),
                     onPressed: () {
                       setState(() {
@@ -119,7 +119,7 @@ class _SignupPageState extends State<SignupPage> {
                       // signup logic
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green.shade500,
+                      backgroundColor: Color(0xff00BE76),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -141,11 +141,11 @@ class _SignupPageState extends State<SignupPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Didn’t Have Account? "),
+                    const Text("Didn\'t Have Account? "),
                     Text(
                       "Sign Up",
                       style: TextStyle(
-                        color: Colors.green.shade600,
+                        color: Color(0xff00BE76),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -165,11 +165,11 @@ class _SignupPageState extends State<SignupPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _socialIcon(Icons.facebook, Colors.blue),
+                    Image.asset("assets/logo/facebook.png"),
                     const SizedBox(width: 20),
-                    _socialIcon(Icons.g_mobiledata, Colors.red),
+                    SvgPicture.asset("assets/logo/google.svg"),
                     const SizedBox(width: 20),
-                    _socialIcon(Icons.apple, Colors.black),
+                    SvgPicture.asset("assets/logo/apple.svg"),
                   ],
                 ),
 

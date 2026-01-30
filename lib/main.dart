@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:turfnpark/HomePages/profile.dart';
+import 'package:turfnpark/pages/confirm_password.dart';
+import 'package:turfnpark/pages/forgot_password.dart';
 import 'package:turfnpark/pages/get_started_page.dart';
 import 'package:turfnpark/pages/login_page.dart';
 import 'package:turfnpark/pages/signup_page.dart';
@@ -33,7 +36,8 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const SignupPage(),
+      debugShowCheckedModeBanner: false,
+      home: const Profile(),
     );
   }
 }
