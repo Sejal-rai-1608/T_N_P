@@ -1,9 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:turfnpark/pages/forgot_password.dart';
-import 'package:turfnpark/pages/signup_page.dart';
-import 'package:turfnpark/controller/CTextfield.dart';
+import 'package:turfnpark/Pages/Profile.dart';
+import '../auth/forgot_password.dart';
+import '../auth/register.dart';
+import '../widgets/CTextfield.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -43,27 +44,30 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 120),
+                const SizedBox(height: 60),
 
                 Center(
                   child: Column(
                     children: [
+                      SvgPicture.asset("assets/logo/Branding.svg", height: 70),
+
+                      /// TITLE
                       Text(
-                        "LOGIN",
+                        "PolicyPlus",
                         style: TextStyle(
                           fontSize: 32,
-                          fontWeight: FontWeight.w900,
-                          color: Color(0xff00BE76),
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 0, 0, 0),
                         ),
                       ),
                       const SizedBox(height: 8),
-                      const Text(
-                        "Have Fun with Friends..!!",
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      // const Text(
+                      //   "Have Fun with Friends..!!",
+                      //   style: TextStyle(
+                      //     fontSize: 22,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -92,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                   suffixIcon: IconButton(
                     icon: Icon(
                       hidePassword ? Icons.visibility_off : Icons.visibility,
-                      color: Colors.green,
+                      color: Color.fromARGB(255, 0, 0, 0),
                     ),
                     onPressed: () {
                       setState(() {
@@ -112,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                       text: 'Forgot Password?',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Color(0xff00BE76),
+                        color: Color.fromARGB(255, 156, 156, 156),
                         decoration: TextDecoration.underline,
                       ),
                       recognizer: TapGestureRecognizer()
@@ -136,10 +140,13 @@ class _LoginPageState extends State<LoginPage> {
                   height: 52,
                   child: ElevatedButton(
                     onPressed: () {
-                      // MaterialPageRoute(builder: (context) => SignupPage());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Profile()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff00BE76),
+                      backgroundColor: Color(0xffF58220),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),
@@ -164,9 +171,9 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         const TextSpan(text: "Didn't Have an Account? "),
                         TextSpan(
-                          text: "Sign Up",
+                          text: "Register Now",
                           style: const TextStyle(
-                            color: Color(0xff00BE76),
+                            color: Color(0xffF58220),
                             fontWeight: FontWeight.bold,
                           ),
                           recognizer: TapGestureRecognizer()
@@ -174,7 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SignupPage(),
+                                  builder: (context) => Register(),
                                 ),
                               );
                             },
@@ -188,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 Center(
                   child: Text(
-                    'Other ways to sign-in',
+                    "----------------- Others Ways to sign-in -------------------",
                     style: const TextStyle(fontSize: 16),
                   ),
                 ),

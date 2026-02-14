@@ -33,7 +33,7 @@ class CTextfield extends StatelessWidget {
             vertical: 16,
             horizontal: 20,
           ),
-      
+
           prefixIcon: Padding(
             padding: const EdgeInsets.all(12),
             child: SvgPicture.asset(
@@ -41,12 +41,12 @@ class CTextfield extends StatelessWidget {
               width: 22,
               height: 22,
               colorFilter: const ColorFilter.mode(
-                Colors.green,
+                Color.fromARGB(255, 81, 81, 81),
                 BlendMode.srcIn,
               ),
             ),
           ),
-      
+
           suffixIcon: suffixIcon,
           // contentPadding: const EdgeInsets.symmetric(
           //   vertical: 16,
@@ -54,11 +54,16 @@ class CTextfield extends StatelessWidget {
           // ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.green),
+            borderSide: const BorderSide(
+              color: Color.fromARGB(255, 156, 156, 156),
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Colors.green, width: 1.5),
+            borderSide: const BorderSide(
+              color: Color.fromARGB(255, 156, 156, 156),
+              width: 1.5,
+            ),
           ),
         ),
       ),

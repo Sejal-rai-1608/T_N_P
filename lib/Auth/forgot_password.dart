@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
+//import 'package:flutter/gestures.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:turfnpark/pages/Login_page.dart';
-import 'package:turfnpark/controller/otp_controller.dart';
-import 'package:turfnpark/pages/confirm_password.dart';
+import 'package:turfnpark/auth/Login_page.dart';
+import 'package:turfnpark/widgets/otp_widget.dart';
+import 'package:turfnpark/auth/confirm_password.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -36,7 +36,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         title: Text(
           "Forgot Password",
           style: TextStyle(
-            color: Color(0xff00BE76),
+            color: Color(0xffF58220),
             fontSize: 32,
             fontWeight: FontWeight.bold,
           ),
@@ -70,7 +70,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 const SizedBox(height: 20),
                 Row(
                   children: [
-                    SvgPicture.asset("assets/icons/load.svg"),
+                    SvgPicture.asset(
+                      "assets/icons/load.svg",
+                      color: Color(0xffF58220),
+                    ),
                     const SizedBox(width: 10),
                     Text(
                       "Auto fetching OTP...",
@@ -95,7 +98,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff00BE76),
+                      backgroundColor: Color(0xffF58220),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(14),
                       ),

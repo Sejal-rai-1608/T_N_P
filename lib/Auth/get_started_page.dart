@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:turfnpark/pages/login_page.dart';
+import 'package:turfnpark/auth/login_page.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -8,38 +9,19 @@ class GetStartedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffF58220),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 30),
+              SizedBox(height: 220.h),
+              SvgPicture.asset("assets/logo/Logo.svg", height: 160.h),
 
-              Text(
-                "GEAR UP\nA BIG GAME",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 42,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.green.shade600,
-                  height: 1.5,
-                ),
-              ),
-              const Text(
-                "Have Fun with Friends..!!",
-                style: TextStyle(fontSize: 24, color: Colors.black87),
-              ),
-
-              // const SizedBox(height: 10),
-              Expanded(
-                child: SvgPicture.asset(
-                  "assets/images/Cricket1.svg",
-                  fit: BoxFit.contain,
-                ),
-              ),
-
-              const SizedBox(height: 10),
+              
+              const SizedBox(height: 400),
               SizedBox(
                 width: double.infinity,
                 height: 52,
@@ -51,7 +33,7 @@ class GetStartedPage extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff00BE76),
+                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24),
                     ),
@@ -61,7 +43,7 @@ class GetStartedPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Color(0xffF58220),
                     ),
                   ),
                 ),

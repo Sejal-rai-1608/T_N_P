@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:turfnpark/controller/CTextfield.dart';
-import 'package:turfnpark/pages/signup_page.dart';
+//import 'package:flutter_svg/flutter_svg.dart';
+import '../widgets/CTextfield.dart';
+import '../auth/register.dart';
 
 class ConfirmPassword extends StatefulWidget {
   const ConfirmPassword({super.key});
@@ -30,7 +30,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
           onPressed: () {
             Navigator.pop(
               context,
-              MaterialPageRoute(builder: (context) => SignupPage()),
+              MaterialPageRoute(builder: (context) => Register()),
             );
           },
         ),
@@ -38,7 +38,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
         title: Text(
           "Save Password",
           style: TextStyle(
-            color: Color(0xff00BE76),
+            color: Color(0xffF58220),
             fontSize: 28,
             fontWeight: FontWeight.bold,
           ),
@@ -69,7 +69,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
               suffixIcon: IconButton(
                 icon: Icon(
                   hidePassword ? Icons.visibility_off : Icons.visibility,
-                  color: Color(0xff00BE76),
+                  color: Color.fromARGB(255, 0, 0, 0),
                 ),
                 onPressed: () {
                   setState(() {
@@ -92,7 +92,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
               suffixIcon: IconButton(
                 icon: Icon(
                   hideConfirmPassword ? Icons.visibility_off : Icons.visibility,
-                  color: Color(0xff00BE76),
+                  color: Color.fromARGB(255, 0, 0, 0),
                 ),
                 onPressed: () {
                   setState(() {
@@ -114,7 +114,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
                 // signup logic
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff00BE76),
+                backgroundColor: Color(0xffF58220),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
                 ),
