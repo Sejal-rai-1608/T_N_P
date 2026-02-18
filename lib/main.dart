@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:turfnpark/Auth/get_started_page.dart';
 import 'package:turfnpark/Pages/mainscreen.dart';
 import 'package:turfnpark/Pages/Profile.dart';
 // import 'package:turfnpark/pages/confirm_password.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: MainScreen(),
+          home: GetStartedPage(),
         );
       },
     );

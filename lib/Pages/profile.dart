@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:turfnpark/Pages/all_plans_page.dart';
 import 'package:turfnpark/widgets/appbar.dart';
 import 'package:turfnpark/widgets/policy_card.dart';
-import '../widgets/insuranceitem.dart';
+import '../widgets/categories.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+// import 'package:turfnpark/Pages/mainscreen.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -19,6 +20,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       //surfaceTintColor: Colors.white,
       appBar: PreferredSize(
@@ -145,18 +147,40 @@ class _ProfileState extends State<Profile> {
                     height: 30,
                     width: 150,
 
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      border: Border.all(color: const Color(0xffF58220)),
+                    // decoration: BoxDecoration(
+                    //   color: Color.fromARGB(255, 255, 255, 255),
+                    //   border: Border.all(color: const Color(0xffF58220)),
 
-                      borderRadius: BorderRadius.circular(5),
-                    ),
+                    //   borderRadius: BorderRadius.circular(5),
+                    // ),
                     child: Center(
-                      child: const Text(
-                        "view all plans",
-                        style: TextStyle(
-                          color: Color(0xffF58220),
-                          fontWeight: FontWeight.bold,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const AllPlansPage(),
+                            ),
+                          );
+                        },
+                        style: OutlinedButton.styleFrom(
+                          side: const BorderSide(
+                            color: Color(0xffF58220),
+                            width: 1,
+                          ),
+
+                          //foregroundColor: const Color(0xffF58220),
+                          minimumSize: const Size(150, 32),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                        ),
+                        child: const Text(
+                          "view all plans",
+                          style: TextStyle(
+                            color: Color(0xffF58220),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

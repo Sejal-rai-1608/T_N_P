@@ -169,7 +169,7 @@ class MainScreen extends StatelessWidget {
   MainScreen({super.key});
 
   final PersistentTabController _controller = PersistentTabController(
-    initialIndex: 2,
+    initialIndex: 0,
   );
 
   Color get active => const Color(0xffF58220);
@@ -195,24 +195,31 @@ class MainScreen extends StatelessWidget {
         PersistentTabConfig(
           screen: const Profile(),
           item: ItemConfig(
-            activeForegroundColor: Colors.orange,
             icon: navIconWithTitle(
               iconPath: "assets/bottomnav/home.svg",
               title: "Home",
+              color: active,
+            ),
+            inactiveIcon: navIconWithTitle(
+              iconPath: "assets/bottomnav/home.svg",
+              title: "Home",
+              color: inactive,
             ),
           ),
         ),
         PersistentTabConfig(
           screen: const Profile(),
           item: ItemConfig(
-            activeForegroundColor: Colors.orange,
-            inactiveBackgroundColor: Colors.grey,
             icon: navIconWithTitle(
               iconPath: "assets/bottomnav/claim.svg",
-
               title: "Claims",
+              color: active,
             ),
-            //  activeIcon: svgIcon("assets/bottomnav/claim.svg", active),
+            inactiveIcon: navIconWithTitle(
+              iconPath: "assets/bottomnav/claim.svg",
+              title: "Claims",
+              color: inactive,
+            ),
           ),
         ),
 
@@ -241,29 +248,35 @@ class MainScreen extends StatelessWidget {
             title: "Policies", // no label for center
           ),
         ),
-
         PersistentTabConfig(
           screen: const Profile(),
           item: ItemConfig(
-            activeForegroundColor: Colors.orange,
-            inactiveBackgroundColor: Colors.grey,
             icon: navIconWithTitle(
               iconPath: "assets/bottomnav/account.svg",
-
               title: "Account",
+              color: active,
             ),
-
-            //  activeIcon: svgIcon("assets/bottomnav/account.svg", active),
+            inactiveIcon: navIconWithTitle(
+              iconPath: "assets/bottomnav/account.svg",
+              title: "Account",
+              color: inactive,
+            ),
           ),
         ),
+
+        //  activeIcon: svgIcon("assets/bottomnav/account.svg", active),
         PersistentTabConfig(
           screen: const Profile(),
           item: ItemConfig(
-            activeForegroundColor: Colors.orange,
-            inactiveBackgroundColor: Colors.transparent,
             icon: navIconWithTitle(
               iconPath: "assets/bottomnav/help.svg",
               title: "Help",
+              color: active,
+            ),
+            inactiveIcon: navIconWithTitle(
+              iconPath: "assets/bottomnav/help.svg",
+              title: "Help",
+              color: inactive,
             ),
           ),
         ),
@@ -283,9 +296,9 @@ class MainScreen extends StatelessWidget {
 Widget navIconWithTitle({
   required String iconPath,
   required String title,
-
+  required Color color,
   double iconSize = 22,
-  double gap = 4, // 🔥 CONTROL SPACING HERE
+  double gap = 4,
 }) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -293,15 +306,15 @@ Widget navIconWithTitle({
       SvgPicture.asset(
         iconPath,
         height: iconSize,
-        colorFilter: ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+        colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
       ),
-      SizedBox(height: gap), // 🔥 ICON–TITLE GAP
+      SizedBox(height: gap),
       Text(
         title,
         style: TextStyle(
           fontSize: 11,
           fontWeight: FontWeight.w500,
-          color: Colors.grey,
+          color: color,
         ),
       ),
     ],

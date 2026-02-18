@@ -9,47 +9,50 @@ class GetStartedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF58220),
+      backgroundColor: const Color(0xffF58220),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 220.h),
+              /// 🔥 Push content to center
+              const Spacer(),
+
               SvgPicture.asset("assets/logo/Logo.svg", height: 160.h),
 
-              
-              const SizedBox(height: 400),
+              const Spacer(),
+
+              /// 🔥 Button at bottom
               SizedBox(
                 width: double.infinity,
-                height: 52,
+                height: 52.h,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                    backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
+                      borderRadius: BorderRadius.circular(24.r),
                     ),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Get Started",
                     style: TextStyle(
-                      fontSize: 19,
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xffF58220),
+                      color: const Color(0xffF58220),
                     ),
                   ),
                 ),
               ),
 
-              const SizedBox(height: 30),
+              SizedBox(height: 30.h),
             ],
           ),
         ),
