@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:turfnpark/Pages/all_plans_page.dart';
@@ -16,19 +17,26 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   int _currentIndex = 0;
-
+  int _plansIndex = 0;
+  final List<String> banners = [
+    'assets/images/bann.svg',
+    'assets/images/bann.svg',
+    'assets/images/bann.svg',
+  ];
+  final List<String> plansBanners = [
+    "assets/images/Plans Banner.svg",
+    "assets/images/Plans Banner.svg",
+    "assets/images/Plans Banner.svg",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       //surfaceTintColor: Colors.white,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppbar(
-          leftImage: "assets/logo/Branding.svg",
-          rightImage: "assets/icons/notification.svg",
-        ),
+      appBar: CustomAppbar(
+        leftImage: "assets/logo/Branding.svg",
+        rightImage: "assets/icons/notification.svg",
       ),
 
       body: SafeArea(
@@ -56,29 +64,58 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                SizedBox(
-                  width: double.infinity,
-                  child: SvgPicture.asset(
-                    'assets/images/bann.svg',
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(3, (index) {
-                    return AnimatedContainer(
-                      duration: const Duration(milliseconds: 250),
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      height: 8,
-                      width: 8,
-                      decoration: BoxDecoration(
-                        color: _currentIndex == index
-                            ? const Color(0xffF58220) // 🔥 active dot
-                            : Colors.grey.shade400, // inactive dot
-                        shape: BoxShape.circle,
+                Column(
+                  children: [
+                    /// 🔥 Carousel Slider
+                    CarouselSlider(
+                      options: CarouselOptions(
+                        //aspectRatio: 16 / 10,
+                        height: 160, // adjust if needed
+                        viewportFraction: 1,
+                        autoPlay: true,
+                        autoPlayInterval: const Duration(seconds: 3),
+                        enlargeCenterPage: false,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _currentIndex = index;
+                          });
+                        },
                       ),
-                    );
-                  }),
+                      items: banners.map((imagePath) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return SvgPicture.asset(
+                              imagePath,
+                              width: double.infinity,
+                              fit: BoxFit.fill,
+                            );
+                          },
+                        );
+                      }).toList(),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    /// 🔥 Indicator Dots
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        banners.length,
+                        (index) => AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          height: 8,
+                          width: _currentIndex == index ? 16 : 8,
+                          decoration: BoxDecoration(
+                            color: _currentIndex == index
+                                ? const Color(0xffF58220)
+                                : Colors.grey.shade400,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const Text(
                   "Categories",
@@ -231,29 +268,52 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 SizedBox(height: 20.h),
-                SvgPicture.asset(
-                  "assets/images/Plans Banner.svg",
-                  height: 115.h,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(3, (index) {
-                    return AnimatedContainer(
-                      duration: const Duration(milliseconds: 250),
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      height: 8,
-                      width: 8,
-                      decoration: BoxDecoration(
-                        color: _currentIndex == index
-                            ? const Color(0xffF58220) // 🔥 active dot
-                            : Colors.grey.shade400, // inactive dot
-                        shape: BoxShape.circle,
+                Column(
+                  children: [
+                    /// 🔥 Plans Carousel
+                    CarouselSlider(
+                      options: CarouselOptions(
+                        height: 115.h,
+                        viewportFraction: 1,
+                        autoPlay: true,
+                        autoPlayInterval: const Duration(seconds: 3),
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _plansIndex = index;
+                          });
+                        },
                       ),
-                    );
-                  }),
+                      items: plansBanners.map((path) {
+                        return SvgPicture.asset(
+                          path,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        );
+                      }).toList(),
+                    ),
+
+                    SizedBox(height: 12.h),
+
+                    /// 🔥 Indicator Dots
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        plansBanners.length,
+                        (index) => AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                          height: 8,
+                          width: _plansIndex == index ? 16 : 8,
+                          decoration: BoxDecoration(
+                            color: _plansIndex == index
+                                ? const Color(0xffF58220)
+                                : Colors.grey.shade400,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

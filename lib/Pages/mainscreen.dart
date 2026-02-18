@@ -157,13 +157,16 @@
 //     );
 //   }
 // }
-
+//------------------++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------\\
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:turfnpark/Pages/Plans.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
 import 'package:turfnpark/Pages/Profile.dart';
+import 'package:turfnpark/Pages/acoount_page.dart';
+import 'package:turfnpark/Pages/claim_page.dart';
+import 'package:turfnpark/Pages/help_page.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
@@ -208,7 +211,7 @@ class MainScreen extends StatelessWidget {
           ),
         ),
         PersistentTabConfig(
-          screen: const Profile(),
+          screen: const ClaimPage(),
           item: ItemConfig(
             icon: navIconWithTitle(
               iconPath: "assets/bottomnav/claim.svg",
@@ -249,7 +252,7 @@ class MainScreen extends StatelessWidget {
           ),
         ),
         PersistentTabConfig(
-          screen: const Profile(),
+          screen: const AccountPage(),
           item: ItemConfig(
             icon: navIconWithTitle(
               iconPath: "assets/bottomnav/account.svg",
@@ -266,7 +269,7 @@ class MainScreen extends StatelessWidget {
 
         //  activeIcon: svgIcon("assets/bottomnav/account.svg", active),
         PersistentTabConfig(
-          screen: const Profile(),
+          screen: const HelpPage(),
           item: ItemConfig(
             icon: navIconWithTitle(
               iconPath: "assets/bottomnav/help.svg",
@@ -283,6 +286,7 @@ class MainScreen extends StatelessWidget {
       ],
 
       // 🔥 REQUIRED IN V2
+      
       navBarBuilder: (navBarConfig) =>
           Style13BottomNavBar(navBarConfig: navBarConfig, height: 60),
 
