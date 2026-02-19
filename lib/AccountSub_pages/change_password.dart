@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/CTextfield.dart';
 import '../auth/register.dart';
 
@@ -66,7 +66,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             child: CTextfield(
               text: "Current Password",
               hintText: "Enter Your Current Password",
-              prefixSvg: "assets/icons/key.svg",
+              prefix: SvgPicture.asset("assets/icons/key.svg"),
               controller: passwordController,
               obscureText: hidePassword,
               suffixIcon: IconButton(
@@ -88,7 +88,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             child: CTextfield(
               text: "New Password",
               hintText: "Enter Your New Password",
-              prefixSvg: "assets/icons/key.svg",
+              prefix: SvgPicture.asset("assets/icons/key.svg"),
               controller: NewPasswordController,
               obscureText: hideNewPassword,
               suffixIcon: IconButton(
@@ -112,7 +112,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             child: CTextfield(
               text: "Confirm Password",
               hintText: "Enter Your Confirm Password",
-              prefixSvg: "assets/icons/key.svg",
+              prefix: SvgPicture.asset("assets/icons/key.svg"),
               controller: ChangePasswordController,
               obscureText: hideChangePassword,
               suffixIcon: IconButton(

@@ -197,7 +197,7 @@ class _AccountPageState extends State<AccountPage> {
 
                         const SizedBox(height: 30),
 
-                        // 🔴 Logout Button
+                        //  Logout Button
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
@@ -233,7 +233,6 @@ class _AccountPageState extends State<AccountPage> {
     );
   }
 
-  // 🔥 Clean Row Builder
   Widget buildRow(IconData icon, String title, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,

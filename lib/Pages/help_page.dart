@@ -40,7 +40,7 @@ class _HelpPageState extends State<HelpPage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(48.h),
         child: CustomAppbar(
-          leftImage: "assets/logo/Branding.svg",
+          leftImage: "assets/logo/Logo.svg",
           rightImage: "assets/icons/notification.svg",
           title: "Policy Plus",
         ),

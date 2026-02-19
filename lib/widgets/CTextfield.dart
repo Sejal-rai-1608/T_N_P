@@ -1,83 +1,152 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+//import 'package:flutter_svg/flutter_svg.dart';
 
 class CTextfield extends StatelessWidget {
   final String hintText;
-  final String prefixSvg;
-  final TextEditingController controller;
+  final String? text;
+  final Widget? prefix;
+
+  final TextEditingController? controller;
   final TextInputType keyboardType;
   final bool obscureText;
   final Widget? suffixIcon;
-  final String? text;
+
+  final bool isDropdown;
+  final List<String>? dropdownItems;
+  final String? value;
+  final Function(String?)? onChanged;
+
+  final int maxLines;
+  final double? height;
+  final String? errorText;
+  final String? icondata;
 
   const CTextfield({
     super.key,
     required this.hintText,
-    required this.prefixSvg,
-    required this.controller,
+    this.text,
+    this.prefix,
+    this.controller,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     this.suffixIcon,
-    this.text,
+    this.isDropdown = false,
+    this.dropdownItems,
+    this.value,
+    this.onChanged,
+    this.maxLines = 1,
+    this.height,
+    this.errorText,
+    this.icondata,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.only(bottom: 18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          /// 🔹 text
           if (text != null) ...[
             Text(
               text!,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-              ),
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 8),
           ],
-          TextField(
-            controller: controller,
-            keyboardType: keyboardType,
-            obscureText: obscureText,
-            decoration: InputDecoration(
-              hintText: hintText,
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: 16,
-                horizontal: 20,
-              ),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.all(12),
-                child: SvgPicture.asset(
-                  prefixSvg,
-                  width: 22,
-                  height: 22,
-                  colorFilter: const ColorFilter.mode(
-                    Color.fromARGB(255, 81, 81, 81),
-                    BlendMode.srcIn,
+
+          /// 🔹 FIELD CONTAINER
+          SizedBox(
+            height: height,
+            child: isDropdown
+                ? DropdownButtonFormField<String>(
+                    dropdownColor: Colors.white,
+                    value: value,
+                    hint: Text(hintText),
+                    items: dropdownItems!
+                        .map(
+                          (item) => DropdownMenuItem(
+                            value: item,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  getIcon(item),
+                                  size: 20,
+                                  color: Colors.orange,
+                                ),
+                                const SizedBox(width: 10),
+                                Text(item),
+                              ],
+                            ),
+                          ),
+                        )
+                        .toList(),
+
+                    onChanged: onChanged,
+                    decoration: _decoration(),
+                  )
+                : TextField(
+                    controller: controller,
+                    keyboardType: keyboardType,
+                    obscureText: obscureText,
+                    maxLines: height != null ? null : maxLines,
+                    expands: height != null,
+                    decoration: _decoration(),
                   ),
-                ),
-              ),
-              suffixIcon: suffixIcon,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(
-                  color: Color.fromARGB(255, 156, 156, 156),
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: const BorderSide(
-                  color: Color.fromARGB(255, 156, 156, 156),
-                  width: 1.5,
-                ),
-              ),
-            ),
           ),
+
+          // 🔹 ERROR TEXT
+          if (errorText != null) ...[
+            const SizedBox(height: 6),
+            Text(
+              errorText!,
+              style: const TextStyle(color: Colors.red, fontSize: 13),
+            ),
+          ],
         ],
+      ),
+    );
+  }
+
+  IconData getIcon(String title) {
+    switch (title.toLowerCase()) {
+      case "health":
+        return Icons.health_and_safety;
+      case "car":
+        return Icons.directions_car;
+      case "life":
+        return Icons.favorite;
+      case "home":
+        return Icons.home;
+      default:
+        return Icons.category;
+    }
+  }
+
+  InputDecoration _decoration() {
+    return InputDecoration(
+      hintText: hintText,
+      filled: true,
+      fillColor: Colors.white,
+      //prefixIconColor: Colors.grey,
+      contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+
+      prefixIconConstraints: const BoxConstraints(minWidth: 10, minHeight: 10),
+      prefixIcon: prefix != null
+          ? Padding(padding: const EdgeInsets.only(left: 16), child: prefix)
+          : null,
+
+      suffixIcon: suffixIcon,
+
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: Color(0xff9C9C9C)),
+      ),
+
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: Colors.orange, width: 1.5),
       ),
     );
   }

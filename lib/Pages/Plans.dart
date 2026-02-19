@@ -14,7 +14,7 @@ class Plans extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: CustomAppbar(
-          leftImage: "assets/logo/Branding.svg",
+          leftImage: "assets/logo/Logo.svg",
           rightImage: "assets/icons/notification.svg",
         ),
       ),

@@ -33,7 +33,7 @@ class _RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 40),
-                SvgPicture.asset("assets/logo/Branding.svg", height: 70),
+                SvgPicture.asset("assets/logo/Logo.svg", height: 70),
 
                 /// TITLE
                 Text(
@@ -50,14 +50,20 @@ class _RegisterState extends State<Register> {
                 /// USERNAME
                 CTextfield(
                   hintText: "Username",
-                  prefixSvg: "assets/icons/Icon.svg",
+                  prefix: SvgPicture.asset(
+                    "assets/icons/Icon.svg",
+                    color: const Color.fromARGB(255, 51, 51, 51),
+                  ),
                   controller: usernameController,
                 ),
 
                 /// EMAIL
                 CTextfield(
                   hintText: "Email Id",
-                  prefixSvg: "assets/icons/mail.svg",
+                  prefix: SvgPicture.asset(
+                    "assets/icons/mail.svg",
+                    color: const Color.fromARGB(255, 51, 51, 51),
+                  ),
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
                 ),
@@ -65,7 +71,10 @@ class _RegisterState extends State<Register> {
                 /// CONTACT
                 CTextfield(
                   hintText: "Contact Number",
-                  prefixSvg: "assets/icons/contact.svg",
+                  prefix: SvgPicture.asset(
+                    "assets/icons/contact.svg",
+                    color: const Color.fromARGB(255, 51, 51, 51),
+                  ),
                   keyboardType: TextInputType.phone,
                   controller: phoneController,
                 ),
@@ -73,7 +82,10 @@ class _RegisterState extends State<Register> {
                 /// PASSWORD
                 CTextfield(
                   hintText: "New Password",
-                  prefixSvg: "assets/icons/key.svg",
+                  prefix: SvgPicture.asset(
+                    "assets/icons/key.svg",
+                    color: const Color.fromARGB(255, 51, 51, 51),
+                  ),
                   controller: passwordController,
                   obscureText: hidePassword,
                   suffixIcon: IconButton(
@@ -92,7 +104,10 @@ class _RegisterState extends State<Register> {
                 /// CONFIRM PASSWORD
                 CTextfield(
                   hintText: "Confirm Password",
-                  prefixSvg: "assets/icons/key.svg",
+                  prefix: SvgPicture.asset(
+                    "assets/icons/key.svg",
+                    color: const Color.fromARGB(255, 51, 51, 51),
+                  ),
                   controller: confirmPasswordController,
                   obscureText: hideConfirmPassword,
                   suffixIcon: IconButton(

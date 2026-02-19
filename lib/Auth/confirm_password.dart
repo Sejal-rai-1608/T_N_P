@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/CTextfield.dart';
 import '../auth/register.dart';
 
@@ -63,7 +63,10 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: CTextfield(
               hintText: "New Password",
-              prefixSvg: "assets/icons/key.svg",
+              prefix: SvgPicture.asset(
+                "assets/icons/key.svg",
+                color: const Color.fromARGB(255, 51, 51, 51),
+              ),
               controller: passwordController,
               obscureText: hidePassword,
               suffixIcon: IconButton(
@@ -86,7 +89,10 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: CTextfield(
               hintText: "Confirm Password",
-              prefixSvg: "assets/icons/key.svg",
+              prefix: SvgPicture.asset(
+                "assets/icons/key.svg",
+                color: const Color.fromARGB(255, 51, 51, 51),
+              ),
               controller: confirmPasswordController,
               obscureText: hideConfirmPassword,
               suffixIcon: IconButton(

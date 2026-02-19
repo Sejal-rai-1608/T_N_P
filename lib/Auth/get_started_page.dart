@@ -9,7 +9,7 @@ class GetStartedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF58220),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -36,7 +36,7 @@ class GetStartedPage extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
+                    backgroundColor: Color(0xffF58220),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24.r),
                     ),
@@ -46,7 +46,7 @@ class GetStartedPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xffF58220),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ),
                 ),

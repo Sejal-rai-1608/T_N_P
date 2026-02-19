@@ -52,16 +52,16 @@ class _LoginPageState extends State<LoginPage> {
               Center(
                 child: Column(
                   children: [
-                    SvgPicture.asset("assets/logo/Branding.svg", height: 70.h),
+                    SvgPicture.asset("assets/logo/Logo.svg", height: 80.h),
                     SizedBox(height: 12.h),
-                    Text(
-                      "PolicyPlus",
-                      style: TextStyle(
-                        fontSize: 28.sp,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
+                    // Text(
+                    //   "PolicyPlus",
+                    //   style: TextStyle(
+                    //     fontSize: 28.sp,
+                    //     fontWeight: FontWeight.bold,
+                    //     color: Colors.black,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -71,7 +71,10 @@ class _LoginPageState extends State<LoginPage> {
               /// 🔥 Username
               CTextfield(
                 hintText: "Username",
-                prefixSvg: "assets/icons/Icon.svg",
+                prefix: SvgPicture.asset(
+                  "assets/icons/Icon.svg",
+                  color: const Color.fromARGB(255, 51, 51, 51),
+                ),
                 controller: usernameController,
               ),
 
@@ -80,7 +83,10 @@ class _LoginPageState extends State<LoginPage> {
               /// 🔥 Password
               CTextfield(
                 hintText: "Password",
-                prefixSvg: "assets/icons/key.svg",
+                prefix: SvgPicture.asset(
+                  "assets/icons/key.svg",
+                  color: const Color.fromARGB(255, 51, 51, 51),
+                ),
                 controller: passwordController,
                 obscureText: hidePassword,
                 suffixIcon: IconButton(
