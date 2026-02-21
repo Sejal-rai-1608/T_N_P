@@ -40,6 +40,7 @@ dependencies:
   persistent_bottom_nav_bar_v2: ^6.2.0
   carousel_slider: ^5.1.2
   image_picker: ^1.2.1
+  fl_chart: ^0.66.0
   
 
 dev_dependencies:

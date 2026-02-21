@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:turfnpark/AccountSub_pages/agent_page.dart';
 import 'package:turfnpark/AccountSub_pages/bank_detail_page.dart';
 import 'package:turfnpark/AccountSub_pages/change_password.dart';
 import 'package:turfnpark/AccountSub_pages/my_policies_page.dart';
@@ -78,11 +79,11 @@ class _AccountPageState extends State<AccountPage> {
     },
     {
       "icon": Icons.contact_emergency,
-      "title": "Contact Us",
+      "title": "Agents",
       "onTap": () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const MyPoliciesPage()),
+          MaterialPageRoute(builder: (context) => const AgentPage()),
         );
       },
     },
