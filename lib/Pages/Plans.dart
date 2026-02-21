@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:turfnpark/utils/app_text_styles.dart';
+import 'package:turfnpark/utils/spacing.dart';
 import 'package:turfnpark/widgets/appbar.dart';
+import 'package:turfnpark/widgets/outlined_button.dart';
 import 'package:turfnpark/widgets/planlist_cards.dart';
 import 'package:turfnpark/Pages/plandetail.dart';
 
@@ -11,41 +15,29 @@ class Plans extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppbar(
-          leftImage: "assets/logo/Logo.svg",
-          rightImage: "assets/icons/notification.svg",
-        ),
+      appBar: const CustomAppbar(
+        showBackButton: false,
+        leftImage: "assets/logo/Logo.svg",
       ),
       body: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0, left: 8.0),
-                // child: Icon(
-                //   Icons.arrow_back,
-                //   size: 30,
-                //   fontWeight: FontWeight.w400,
-                //   color: const Color.fromARGB(255, 0, 0, 0),
-                // ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 14.0),
-                child: Text(
-                  "73 Plans for self",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "73 Plans for self",
+                    style: AppTextStyles.mainTitle,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 180.0, top: 28.0),
-                child: SvgPicture.asset("assets/icons/option.svg", height: 14),
-              ),
-            ],
+                Icon(Icons.tune, size: 22.w, color: Colors.black),
+              ],
+            ),
           ),
-          const SizedBox(height: 20),
+          AppSpace.h10,
+
           Expanded(
             child: ListView(
               children: [
@@ -68,7 +60,7 @@ class Plans extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(height: 16),
+                AppSpace.h14,
                 PlanListCard(
                   imagePath: "assets/insurance/maxlife.png",
                   planName: "Max Life",
@@ -88,7 +80,7 @@ class Plans extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(height: 16),
+                AppSpace.h14,
                 PlanListCard(
                   imagePath: "assets/insurance/activefp.png",
                   planName: "Active Fit Plus",
@@ -109,7 +101,7 @@ class Plans extends StatelessWidget {
                   },
                 ),
                 // const SizedBox(height: 16),
-                // PlanCard(
+                // PlanListCard(
                 //   imagePath: "assets/insurance/star.png",
                 //   planName: "Young Star Gold",
                 //   coverAmount: "₹5 Lakhs",
@@ -124,31 +116,11 @@ class Plans extends StatelessWidget {
                 //   price: "₹593/months",
                 //   title: 'View 12 more plans \n view features',
                 // ),
-                const SizedBox(height: 16),
+                AppSpace.h14,
                 Center(
-                  child: SizedBox(
-                    height: 30,
-                    width: 150,
-                    child: OutlinedButton(
-                      onPressed: () {},
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(
-                          color: Color(0xffF58220),
-                          width: 1.5,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        backgroundColor: Colors.white,
-                      ),
-                      child: const Text(
-                        "View All Plans",
-                        style: TextStyle(
-                          color: Color(0xffF58220),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
+                  child: OutlinedButtonWidget(
+                    text: "View All Plans",
+                    onPressed: () {},
                   ),
                 ),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:turfnpark/utils/app_text_styles.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 
 class CTextfield extends StatelessWidget {
@@ -49,10 +50,7 @@ class CTextfield extends StatelessWidget {
         children: [
           /// 🔹 text
           if (text != null) ...[
-            Text(
-              text!,
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-            ),
+            Text(text!, style: AppTextStyles.fieldLabel),
             const SizedBox(height: 8),
           ],
 
@@ -63,7 +61,7 @@ class CTextfield extends StatelessWidget {
                 ? DropdownButtonFormField<String>(
                     dropdownColor: Colors.white,
                     value: value,
-                    hint: Text(hintText),
+                    hint: Text(hintText, style: AppTextStyles.hintText),
                     items: dropdownItems!
                         .map(
                           (item) => DropdownMenuItem(
@@ -99,10 +97,7 @@ class CTextfield extends StatelessWidget {
           // 🔹 ERROR TEXT
           if (errorText != null) ...[
             const SizedBox(height: 6),
-            Text(
-              errorText!,
-              style: const TextStyle(color: Colors.red, fontSize: 13),
-            ),
+            Text(errorText!, style: AppTextStyles.errorText),
           ],
         ],
       ),
@@ -127,6 +122,7 @@ class CTextfield extends StatelessWidget {
   InputDecoration _decoration() {
     return InputDecoration(
       hintText: hintText,
+      hintStyle: AppTextStyles.hintText,
       filled: true,
       fillColor: Colors.white,
       //prefixIconColor: Colors.grey,

@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:turfnpark/widgets/primary_button.dart';
 import '../widgets/CTextfield.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:turfnpark/auth/login_page.dart';
@@ -36,15 +37,6 @@ class _RegisterState extends State<Register> {
                 SvgPicture.asset("assets/logo/Logo.svg", height: 70),
 
                 /// TITLE
-                Text(
-                  "PolicyPlus",
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 0, 0, 0),
-                  ),
-                ),
-
                 const SizedBox(height: 40),
 
                 /// USERNAME
@@ -128,31 +120,14 @@ class _RegisterState extends State<Register> {
                 const SizedBox(height: 30),
 
                 /// SIGN UP BUTTON
-                SizedBox(
-                  width: double.infinity,
-                  height: 52,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffF58220),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                    ),
-                    child: const Text(
-                      "Register",
-                      style: TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+                PrimaryButton(
+                  text: "Register",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
                 ),
 
                 const SizedBox(height: 20),

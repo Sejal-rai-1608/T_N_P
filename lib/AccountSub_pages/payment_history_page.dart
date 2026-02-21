@@ -10,13 +10,7 @@ class PaymentHistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-     appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppbar(
-          leftImage: "assets/logo/Logo.svg",
-          rightImage: "assets/icons/notification.svg",
-        ),
-      ),
+      appBar: const CustomAppbar(leftImage: "assets/logo/Logo.svg"),
 
       body: ListView.builder(
         padding: EdgeInsets.all(16.w),

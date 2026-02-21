@@ -1,326 +1,154 @@
-// import 'package:flutter/material.dart';
-// //import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:turfnpark/Pages/Profile.dart';
-// import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-
-// // import your pages
-// // import 'Pages/Profile.dart';
-// // import 'Pages/Claims.dart';
-// // import 'Pages/Policies.dart';
-// // import 'Pages/Profile.dart';
-// // import 'Pages/Help.dart';
-
-// class MainScreen extends StatelessWidget {
-//   MainScreen({super.key});
-
-//   final PersistentTabController _controller = PersistentTabController(
-//     initialIndex: 2,
-//   ); // Policies selected
-
-//   List<Widget> _screens() {
-//     return const [
-//       Profile(),
-//       Profile(),
-//       Profile(),
-//       Profile(),
-//       Profile(),
-//     ]; // Replace with actual pages
-//   }
-
-//   List<PersistentBottomNavBarItem> _navItems() {
-//     const inactive = Color(0xff8A94A6);
-//     const active = Color(0xffF58220);
-
-//     return [
-//       PersistentBottomNavBarItem(
-//         contentPadding: 0.0,
-//         icon: SvgPicture.asset(
-//           "assets/bottomnav/home.svg",
-//           height: 26,
-//           color: active,
-//         ),
-//         inactiveIcon: SvgPicture.asset(
-//           "assets/bottomnav/home.svg",
-//           height: 26,
-//           color: inactive,
-//         ),
-
-//         title: "Home",
-//         textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-//         activeColorPrimary: active,
-//         inactiveColorPrimary: inactive,
-//       ),
-
-//       PersistentBottomNavBarItem(
-//         contentPadding: 0.0,
-//         icon: SvgPicture.asset(
-//           "assets/bottomnav/claim.svg",
-//           height: 26,
-//           color: active,
-//         ),
-//         inactiveIcon: SvgPicture.asset(
-//           "assets/bottomnav/claim.svg",
-//           height: 26,
-//           color: inactive,
-//         ),
-//         title: "Claims",
-//         textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-//         activeColorPrimary: active,
-//         inactiveColorPrimary: inactive,
-//       ),
-
-//       PersistentBottomNavBarItem(
-//         contentPadding: 0.0,
-//         icon: Stack(
-//           alignment: Alignment.center,
-//           children: [
-//             SvgPicture.asset("assets/bottomnav/policy_bg.svg", height: 40),
-//             SvgPicture.asset(
-//               "assets/bottomnav/policy.svg",
-//               height: 26,
-
-//               color: Colors.white,
-//             ),
-//           ],
-//         ),
-//         title: "Policies",
-//         activeColorPrimary: Colors.transparent,
-//         inactiveColorPrimary: Colors.transparent,
-//       ),
-//       // PersistentBottomNavBarItem(
-//       //   icon: SvgPicture.asset(
-//       //     "assets/bottomnav/account.svg",
-//       //     height: 20,
-//       //     color: active,
-//       //   ),
-//       //   inactiveIcon: SvgPicture.asset(
-//       //     "assets/bottomnav/account.svg",
-//       //     height: 20,
-//       //     color: inactive,
-//       //   ),
-//       //   title: "Account",
-//       //   activeColorPrimary: active,
-//       //   inactiveColorPrimary: inactive,
-//       // ),
-//       PersistentBottomNavBarItem(
-//         contentPadding: 0.0,
-//         icon: SvgPicture.asset(
-//           "assets/bottomnav/account.svg",
-//           height: 20,
-//           color: active,
-//         ),
-//         inactiveIcon: SvgPicture.asset(
-//           "assets/bottomnav/account.svg",
-//           height: 20,
-//           color: inactive,
-//         ),
-//         title: "Account",
-//         activeColorPrimary: active,
-//         inactiveColorPrimary: inactive,
-//       ),
-
-//       PersistentBottomNavBarItem(
-//         contentPadding: 0.0,
-//         icon: SvgPicture.asset(
-//           "assets/bottomnav/help.svg",
-//           height: 20,
-//           color: active,
-//         ),
-//         inactiveIcon: SvgPicture.asset(
-//           "assets/bottomnav/help.svg",
-//           height: 20,
-//           color: inactive,
-//         ),
-//         title: "Help",
-//         activeColorPrimary: active,
-//         inactiveColorPrimary: inactive,
-//       ),
-//     ];
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return PersistentTabView(
-//       context,
-//       controller: _controller,
-//       screens: _screens(),
-//       items: _navItems(),
-
-//       navBarStyle: NavBarStyle.style15,
-//       backgroundColor: Colors.black,
-//       confineToSafeArea: true,
-//       handleAndroidBackButtonPress: true,
-
-//       resizeToAvoidBottomInset: true,
-//       stateManagement: true,
-//     );
-//   }
-// }
-//------------------++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-------------------\\
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:turfnpark/Pages/Plans.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:turfnpark/Pages/Profile.dart';
-import 'package:turfnpark/Pages/acoount_page.dart';
 import 'package:turfnpark/Pages/claim_page.dart';
+import 'package:turfnpark/Pages/Plans.dart';
+import 'package:turfnpark/Pages/acoount_page.dart';
 import 'package:turfnpark/Pages/help_page.dart';
 
-class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
-  final PersistentTabController _controller = PersistentTabController(
-    initialIndex: 0,
-  );
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
 
-  Color get active => const Color(0xffF58220);
-  Color get inactive => const Color(0xff8A94A6);
+class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
 
-  Widget svgIcon(String path, Color color, {double size = 22}) {
+  /// Screens (IndexedStack preserves state)
+  final List<Widget> _screens = const [
+    Profile(),
+    ClaimPage(),
+    Plans(),
+    AccountPage(),
+    HelpPage(),
+  ];
+
+  static const Color activeColor = Color(0xffF58220);
+  static const Color inactiveColor = Color(0xff8A94A6);
+
+  /// Reusable SVG icon builder
+  Widget navIcon(String path, bool active) {
     return SvgPicture.asset(
       path,
-      height: size,
-      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+      height: 22.sp,
+      colorFilter: ColorFilter.mode(
+        active ? activeColor : inactiveColor,
+        BlendMode.srcIn,
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      avoidBottomPadding: false,
+    return Scaffold(
+      extendBody: true,
 
-      //   context,
-      controller: _controller,
+      body: IndexedStack(index: _currentIndex, children: _screens),
 
-      tabs: [
-        PersistentTabConfig(
-          screen: const Profile(),
-          item: ItemConfig(
-            icon: navIconWithTitle(
-              iconPath: "assets/bottomnav/home.svg",
-              title: "Home",
-              color: active,
-            ),
-            inactiveIcon: navIconWithTitle(
-              iconPath: "assets/bottomnav/home.svg",
-              title: "Home",
-              color: inactive,
-            ),
-          ),
-        ),
-        PersistentTabConfig(
-          screen: const ClaimPage(),
-          item: ItemConfig(
-            icon: navIconWithTitle(
-              iconPath: "assets/bottomnav/claim.svg",
-              title: "Claims",
-              color: active,
-            ),
-            inactiveIcon: navIconWithTitle(
-              iconPath: "assets/bottomnav/claim.svg",
-              title: "Claims",
-              color: inactive,
-            ),
-          ),
-        ),
-
-        // 🔥 CENTER TAB
-        PersistentTabConfig(
-          screen: const Plans(),
-          item: ItemConfig(
-            activeForegroundColor: Colors.orange,
-            inactiveBackgroundColor: Colors.grey,
-            icon: Stack(
-              alignment: Alignment.center,
-              children: [
-                SvgPicture.asset("assets/bottomnav/policy_bg.svg", height: 48),
-                SvgPicture.asset(
-                  "assets/bottomnav/policy.svg",
-                  height: 24,
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-
-                    BlendMode.srcIn,
-                  ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 10.h),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(28.r),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(.92),
+                  borderRadius: BorderRadius.circular(28.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.06),
+                      blurRadius: 18.r,
+                      offset: Offset(0, 6.h),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+                child: BottomNavigationBar(
+                  currentIndex: _currentIndex,
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  type: BottomNavigationBarType.fixed,
+                  selectedItemColor: activeColor,
+                  unselectedItemColor: inactiveColor,
+                  showUnselectedLabels: true,
+                  selectedFontSize: 12.sp,
+                  unselectedFontSize: 11.sp,
 
-            title: "Policies", // no label for center
+                  onTap: (index) {
+                    setState(() => _currentIndex = index);
+                  },
+
+                  items: [
+                    /// HOME
+                    BottomNavigationBarItem(
+                      icon: navIcon("assets/bottomnav/home.svg", false),
+                      activeIcon: navIcon("assets/bottomnav/home.svg", true),
+                      label: "Home",
+                    ),
+
+                    /// CLAIMS
+                    BottomNavigationBarItem(
+                      icon: navIcon("assets/bottomnav/claim.svg", false),
+                      activeIcon: navIcon("assets/bottomnav/claim.svg", true),
+                      label: "Claims",
+                    ),
+
+                    /// ⭐ CENTER BUTTON
+                    BottomNavigationBarItem(
+                      icon: Container(
+                        height: 48.w,
+                        width: 48.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: activeColor,
+                          boxShadow: [
+                            BoxShadow(
+                              color: activeColor.withOpacity(.35),
+                              blurRadius: 12.r,
+                              offset: Offset(0, 4.h),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            "assets/bottomnav/policy.svg",
+                            height: 24.sp,
+                            colorFilter: const ColorFilter.mode(
+                              Colors.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                      ),
+                      label: "Policies",
+                    ),
+
+                    /// ACCOUNT
+                    BottomNavigationBarItem(
+                      icon: navIcon("assets/bottomnav/account.svg", false),
+                      activeIcon: navIcon("assets/bottomnav/account.svg", true),
+                      label: "Account",
+                    ),
+
+                    /// HELP
+                    BottomNavigationBarItem(
+                      icon: navIcon("assets/bottomnav/help.svg", false),
+                      activeIcon: navIcon("assets/bottomnav/help.svg", true),
+                      label: "Help",
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
-        PersistentTabConfig(
-          screen: const AccountPage(),
-          item: ItemConfig(
-            icon: navIconWithTitle(
-              iconPath: "assets/bottomnav/account.svg",
-              title: "Account",
-              color: active,
-            ),
-            inactiveIcon: navIconWithTitle(
-              iconPath: "assets/bottomnav/account.svg",
-              title: "Account",
-              color: inactive,
-            ),
-          ),
-        ),
-
-        //  activeIcon: svgIcon("assets/bottomnav/account.svg", active),
-        PersistentTabConfig(
-          screen: const HelpPage(),
-          item: ItemConfig(
-            icon: navIconWithTitle(
-              iconPath: "assets/bottomnav/help.svg",
-              title: "Help",
-              color: active,
-            ),
-            inactiveIcon: navIconWithTitle(
-              iconPath: "assets/bottomnav/help.svg",
-              title: "Help",
-              color: inactive,
-            ),
-          ),
-        ),
-      ],
-
-      // 🔥 REQUIRED IN V2
-      
-      navBarBuilder: (navBarConfig) =>
-          Style13BottomNavBar(navBarConfig: navBarConfig, height: 60),
-
-      backgroundColor: Colors.white,
-
-      resizeToAvoidBottomInset: true,
+      ),
     );
   }
-}
-
-Widget navIconWithTitle({
-  required String iconPath,
-  required String title,
-  required Color color,
-  double iconSize = 22,
-  double gap = 4,
-}) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      SvgPicture.asset(
-        iconPath,
-        height: iconSize,
-        colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-      ),
-      SizedBox(height: gap),
-      Text(
-        title,
-        style: TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.w500,
-          color: color,
-        ),
-      ),
-    ],
-  );
 }

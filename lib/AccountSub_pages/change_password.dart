@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:turfnpark/widgets/appbar.dart';
+import 'package:turfnpark/widgets/primary_button.dart';
 import '../widgets/CTextfield.dart';
 
 class ChangePassword extends StatefulWidget {
@@ -23,13 +24,7 @@ class _ChangePasswordState extends State<ChangePassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppbar(
-          leftImage: "assets/logo/Logo.svg",
-          rightImage: "assets/icons/notification.svg",
-        ),
-      ),
+      appBar: const CustomAppbar(leftImage: "assets/logo/Logo.svg"),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 10.h),
         child: Column(
@@ -139,30 +134,7 @@ class _ChangePasswordState extends State<ChangePassword> {
             SizedBox(height: 40.h),
 
             /// 🔹 Update Button
-            SizedBox(
-              width: double.infinity,
-              height: 54.h,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xffF58220),
-                  elevation: 6,
-                  shadowColor: const Color(0xffF58220).withOpacity(0.4),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.r),
-                  ),
-                ),
-                child: Text(
-                  "Update Password",
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.3,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            PrimaryButton(text: "Update Password", onPressed: () {}),
 
             SizedBox(height: 20.h),
           ],

@@ -17,9 +17,9 @@ class InsuranceItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(imagePath, height: 60.h),
+        Image.asset(imagePath, height: 50.h),
         const SizedBox(height: 6),
-        Text(title, textAlign: TextAlign.center),
+        Text(title, textAlign: TextAlign.center, maxLines: 2),
       ],
     );
   }

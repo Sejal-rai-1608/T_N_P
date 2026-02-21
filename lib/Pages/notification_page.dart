@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:turfnpark/widgets/appbar.dart';
+import 'package:turfnpark/widgets/notification_card.dart';
 
 class NotificationPage extends StatelessWidget {
+  static const String routeName = "/notification";
   const NotificationPage({super.key});
 
   @override
@@ -30,12 +32,10 @@ class NotificationPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppbar(
-          leftImage: "assets/logo/Logo.svg",
-          rightImage: "assets/icons/notification.svg",
-        ),
+      appBar: const CustomAppbar(
+        title: "Notifications",
+        showBackButton: true,
+        hideRightIcon: true,
       ),
 
       body: notifications.isEmpty
@@ -50,64 +50,11 @@ class NotificationPage extends StatelessWidget {
               itemCount: notifications.length,
               itemBuilder: (context, index) {
                 final item = notifications[index];
-
-                return Container(
-                  margin: EdgeInsets.only(bottom: 12.h),
-                  padding: EdgeInsets.all(14.w),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 8,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(10.w),
-                        decoration: BoxDecoration(
-                          color: const Color(0xffF58220).withOpacity(0.1),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          item["icon"] as IconData,
-                          color: const Color(0xffF58220),
-                          size: 22.sp,
-                        ),
-                      ),
-                      SizedBox(width: 14.w),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              item["title"] as String,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 15.sp,
-                              ),
-                            ),
-                            SizedBox(height: 4.h),
-                            Text(
-                              item["subtitle"] as String,
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontSize: 13.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text(
-                        item["time"] as String,
-                        style: TextStyle(color: Colors.grey, fontSize: 11.sp),
-                      ),
-                    ],
-                  ),
+                return NotificationCard(
+                  icon: item["icon"] as IconData,
+                  title: item["title"] as String,
+                  subtitle: item["subtitle"] as String,
+                  time: item["time"] as String,
                 );
               },
             ),

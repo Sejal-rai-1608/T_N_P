@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:turfnpark/auth/login_page.dart';
+import 'package:turfnpark/utils/spacing.dart';
+import 'package:turfnpark/widgets/primary_button.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -23,36 +25,16 @@ class GetStartedPage extends StatelessWidget {
               const Spacer(),
 
               /// 🔥 Button at bottom
-              SizedBox(
-                width: double.infinity,
-                height: 52.h,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xffF58220),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24.r),
-                    ),
-                  ),
-                  child: Text(
-                    "Get Started",
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(255, 255, 255, 255),
-                    ),
-                  ),
-                ),
+              PrimaryButton(
+                text: "Get Started",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()),
+                  );
+                },
               ),
-
-              SizedBox(height: 30.h),
+              AppSpace.h20,
             ],
           ),
         ),

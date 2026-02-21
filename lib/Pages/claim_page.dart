@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:turfnpark/utils/app_text_styles.dart';
+import 'package:turfnpark/utils/spacing.dart';
 import 'package:turfnpark/widgets/appbar.dart';
 import 'package:turfnpark/widgets/CTextfield.dart';
+import 'package:turfnpark/widgets/primary_button.dart';
 
 class ClaimPage extends StatefulWidget {
   const ClaimPage({super.key});
@@ -22,17 +25,16 @@ class _ClaimPageState extends State<ClaimPage> {
     return Scaffold(
       backgroundColor: const Color(0xffF5F6FA), // 🔥 soft background
 
-      appBar: CustomAppbar(
+      appBar: const CustomAppbar(
+        showBackButton: false,
         leftImage: "assets/logo/Logo.svg",
-        rightImage: "assets/icons/notification.svg",
       ),
-
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 10),
+            AppSpace.h8,
 
             /// 🔥 FORM CARD CONTAINER
             Container(
@@ -54,10 +56,7 @@ class _ClaimPageState extends State<ClaimPage> {
                   CTextfield(
                     text: "Select Policy *",
                     hintText: "Choose Policy",
-                    prefix: SvgPicture.asset(
-                      "assets/icons/policy.svg",
-                      width: 20,
-                    ),
+
                     isDropdown: true,
                     dropdownItems: [
                       "Health Insurance",
@@ -76,16 +75,13 @@ class _ClaimPageState extends State<ClaimPage> {
                         : null,
                   ),
 
-                  const SizedBox(height: 15),
+                  AppSpace.h8,
 
                   /// 🔹 CLAIM TYPE DROPDOWN
                   CTextfield(
                     text: "Claim Type *",
                     hintText: "Select Claim Type",
-                    prefix: SvgPicture.asset(
-                      "assets/icons/claim_type.svg",
-                      width: 20,
-                    ),
+
                     isDropdown: true,
                     dropdownItems: [
                       "Accident",
@@ -104,7 +100,7 @@ class _ClaimPageState extends State<ClaimPage> {
                         : null,
                   ),
 
-                  const SizedBox(height: 15),
+                  AppSpace.h8,
 
                   /// 🔹 DESCRIPTION BOX
                   CTextfield(
@@ -114,21 +110,18 @@ class _ClaimPageState extends State<ClaimPage> {
                     maxLines: 5,
                   ),
 
-                  const SizedBox(height: 20),
+                  AppSpace.h8,
 
                   /// 🔹 UPLOAD DOCUMENT SECTION
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: const Text(
+                    child: Text(
                       "Upload Documents",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                      ),
+                      style: AppTextStyles.fieldLabel,
                     ),
                   ),
 
-                  const SizedBox(height: 10),
+                  AppSpace.h8,
 
                   Container(
                     width: double.infinity,
@@ -140,9 +133,9 @@ class _ClaimPageState extends State<ClaimPage> {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(Icons.upload_file, color: Colors.black54),
-                        SizedBox(width: 10),
+                        AppSpace.w4,
                         Text(
                           "Upload Files",
                           style: TextStyle(fontWeight: FontWeight.w600),
@@ -151,41 +144,25 @@ class _ClaimPageState extends State<ClaimPage> {
                     ),
                   ),
 
-                  const SizedBox(height: 40),
+                  AppSpace.h14,
 
                   /// 🔥 GRADIENT SUBMIT BUTTON
                   // GestureDetector(
                   //   onTap: () {
                   //     print("Claim Submitted");
                   //   },
-                  SizedBox(
-                    width: double.infinity,
-                    height: 55,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          isSubmitted = true;
-                        });
+                  PrimaryButton(
+                    text: "Submit Claim",
+                    onPressed: () {
+                      setState(() {
+                        isSubmitted = true;
+                      });
 
-                        if (selectedPolicy != null &&
-                            selectedClaimType != null) {
-                          print("Move to next step");
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: const Text(
-                        "Submit Claim",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                    ),
+                      if (selectedPolicy != null && selectedClaimType != null) {
+                        print("Move to next step");
+                      }
+                    },
                   ),
-
-                  const SizedBox(height: 30),
                 ],
               ),
             ),

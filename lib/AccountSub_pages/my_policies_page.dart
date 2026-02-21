@@ -9,13 +9,7 @@ class MyPoliciesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF4F6FB),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppbar(
-          leftImage: "assets/logo/Logo.svg",
-          rightImage: "assets/icons/notification.svg",
-        ),
-      ),
+      appBar: const CustomAppbar(leftImage: "assets/logo/Logo.svg"),
 
       body: Column(
         children: [

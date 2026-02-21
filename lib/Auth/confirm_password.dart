@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:turfnpark/widgets/primary_button.dart';
 import '../widgets/CTextfield.dart';
 import '../auth/register.dart';
 
@@ -112,29 +113,7 @@ class _ConfirmPasswordState extends State<ConfirmPassword> {
           const SizedBox(height: 30),
 
           /// SIGN UP BUTTON
-          SizedBox(
-            width: 388,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: () {
-                // signup logic
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xffF58220),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
-              ),
-              child: const Text(
-                "Save Password",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
+          PrimaryButton(text: "Save Password", onPressed: () {}),
           const SizedBox(height: 20),
         ],
       ),

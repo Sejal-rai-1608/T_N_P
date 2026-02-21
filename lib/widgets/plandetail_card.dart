@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:turfnpark/utils/app_text_styles.dart';
+import 'package:turfnpark/utils/spacing.dart';
 
 class PlanDetailCard extends StatelessWidget {
   final String imagePath;
@@ -16,60 +19,72 @@ class PlanDetailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(25),
-      decoration: BoxDecoration(
-        color: const Color(0xffF3F3F3),
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Row(
-        children: [
-          Image.asset(imagePath, width: 80, height: 80),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Card(
+      color: Colors.white60,
+      elevation: 3,
+      shadowColor: Colors.black.withOpacity(0.08),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.r)),
+      margin: EdgeInsets.zero,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+        child: Row(
+          children: [
+            /// 🔹 ICON
+            Container(
+              height: 52.w,
+              width: 52.w,
+              decoration: BoxDecoration(
+                color: const Color(0xffF7F8FA),
+                borderRadius: BorderRadius.circular(14.r),
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(10.w),
+                child: Image.asset(imagePath),
+              ),
+            ),
+
+            AppSpace.w12,
+
+            /// 🔹 PLAN DETAILS
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(planName, style: AppTextStyles.cardTitle),
+
+                  AppSpace.h4,
+
+                  Text(
+                    "Coverage up to $coverAmount",
+                    style: AppTextStyles.hintText.copyWith(fontSize: 13.sp),
+                  ),
+                ],
+              ),
+            ),
+
+            /// 🔹 PRICE
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  planName,
-                  style: const TextStyle(
-                    fontSize: 18,
+                  price,
+                  style: TextStyle(
+                    fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
+                    color: const Color(0xffF58220),
                   ),
                 ),
-                const SizedBox(height: 10),
-                const Text("Cover amount", style: TextStyle(fontSize: 14)),
-                const SizedBox(height: 4),
+
+                AppSpace.h4,
+
                 Text(
-                  coverAmount,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  "per year",
+                  style: AppTextStyles.hintText.copyWith(fontSize: 11.sp),
                 ),
               ],
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text("Premium", style: TextStyle(fontSize: 14)),
-              const SizedBox(height: 4),
-              Text(
-                price,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 4),
-              const Text(
-                "₹8585 paid annually",
-                style: TextStyle(fontSize: 12, color: Colors.grey),
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

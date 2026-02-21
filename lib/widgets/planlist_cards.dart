@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:turfnpark/utils/app_text_styles.dart';
+import 'package:turfnpark/utils/spacing.dart';
 
 class PlanListCard extends StatelessWidget {
   final String imagePath;
@@ -22,69 +25,67 @@ class PlanListCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: BorderRadius.circular(18.r),
       child: Container(
-        padding: const EdgeInsets.all(25),
+        padding: EdgeInsets.all(20.w),
         decoration: BoxDecoration(
-          color: const Color(0xffF3F3F3),
-          borderRadius: BorderRadius.circular(18),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(18.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 14,
+              offset: const Offset(0, 6),
+            ),
+          ],
         ),
         child: Row(
           children: [
-            Image.asset(imagePath, width: 80, height: 80),
-            const SizedBox(width: 16),
+            /// 🟠 Logo Container
+            Container(
+              padding: EdgeInsets.all(10.w),
+              decoration: BoxDecoration(
+                color: const Color(0xffF5F6FA),
+                borderRadius: BorderRadius.circular(14.r),
+              ),
+              child: Image.asset(
+                imagePath,
+                width: 46.w,
+                height: 46.w,
+                fit: BoxFit.contain,
+              ),
+            ),
+
+            AppSpace.w12,
+
+            /// 🟢 Plan Info
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    planName,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
+                  Text(planName, style: AppTextStyles.cardTitle),
+                  AppSpace.h4,
+                  Text(title, style: AppTextStyles.cardSubtitle),
+                  AppSpace.h8,
+                  Text("Cover: $coverAmount", style: AppTextStyles.cardMeta),
                 ],
               ),
             ),
+
+            /// 🟠 Price & Arrow
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Text("Cover amount", style: TextStyle(fontSize: 14)),
-                const SizedBox(height: 4),
-                Text(
-                  coverAmount,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 12),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 14.w,
+                    vertical: 6.h,
                   ),
                   decoration: BoxDecoration(
                     color: const Color(0xffF58220),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(8.r),
                   ),
-                  child: Text(
-                    price,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+                  child: Text(price, style: AppTextStyles.badgeText),
                 ),
               ],
             ),

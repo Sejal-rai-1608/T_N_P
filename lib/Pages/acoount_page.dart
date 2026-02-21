@@ -1,10 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:turfnpark/AccountSub_pages/bank_detail_page.dart';
 import 'package:turfnpark/AccountSub_pages/change_password.dart';
 import 'package:turfnpark/AccountSub_pages/my_policies_page.dart';
 import 'package:turfnpark/AccountSub_pages/payment_history_page.dart';
+import 'package:turfnpark/utils/app_text_styles.dart';
+import 'package:turfnpark/utils/spacing.dart';
+import 'package:turfnpark/widgets/app_card.dart';
+import 'package:turfnpark/widgets/menu_tile.dart';
+import 'package:turfnpark/widgets/primary_button.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -89,7 +95,7 @@ class _AccountPageState extends State<AccountPage> {
         children: [
           // 🔶 Gradient Header
           Container(
-            height: 280,
+            height: 260.h,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0xffF58220), Color(0xffF9A825)],
@@ -102,22 +108,22 @@ class _AccountPageState extends State<AccountPage> {
           SafeArea(
             child: Column(
               children: [
-                const SizedBox(height: 30),
+                AppSpace.h20,
 
                 // 👤 Profile Section
                 Stack(
                   alignment: Alignment.center,
                   children: [
                     CircleAvatar(
-                      radius: 55,
+                      radius: 55.sp,
                       backgroundColor: Colors.white,
                       backgroundImage: _image != null
                           ? FileImage(_image!)
                           : null,
                       child: _image == null
-                          ? const Icon(
+                          ? Icon(
                               Icons.person,
-                              size: 55,
+                              size: 55.sp,
                               color: Colors.orange,
                             )
                           : null,
@@ -129,16 +135,16 @@ class _AccountPageState extends State<AccountPage> {
                       child: GestureDetector(
                         onTap: pickImage,
                         child: Container(
-                          padding: const EdgeInsets.all(6),
+                          padding: EdgeInsets.all(6.w),
                           decoration: BoxDecoration(
                             color: Colors.orange,
                             shape: BoxShape.circle,
                             border: Border.all(color: Colors.white, width: 2),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.camera_alt,
                             color: Colors.white,
-                            size: 18,
+                            size: 18.sp,
                           ),
                         ),
                       ),
@@ -146,96 +152,45 @@ class _AccountPageState extends State<AccountPage> {
                   ],
                 ),
 
-                const SizedBox(height: 15),
+                AppSpace.h16,
 
-                const Text(
-                  "Sejal Rai",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+                Text("Sejal Rai", style: AppTextStyles.whiteSubtitle),
 
-                const SizedBox(height: 5),
+                Text("sejal@email.com", style: AppTextStyles.badgeText),
 
-                const Text(
-                  "sejal@email.com",
-                  style: TextStyle(color: Colors.white70),
-                ),
-
-                const SizedBox(height: 25),
+                AppSpace.h14,
 
                 // 🪪 White Container
                 Expanded(
                   child: Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: const BoxDecoration(
+                    padding: EdgeInsets.all(20.w),
+                    decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(30),
+                        top: Radius.circular(30.r),
                       ),
                     ),
                     child: Column(
                       children: [
                         // 📦 Menu Card
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.05),
-                                blurRadius: 10,
-                                offset: const Offset(0, 5),
-                              ),
-                            ],
-                          ),
+                        AppCard(
                           child: Column(
                             children: List.generate(menuItems.length, (index) {
                               final item = menuItems[index];
 
-                              return Column(
-                                children: [
-                                  buildRow(
-                                    item["icon"] as IconData,
-                                    item["title"] as String,
-                                    item["onTap"] as VoidCallback,
-                                  ),
-                                  if (index != menuItems.length - 1)
-                                    const Divider(height: 1),
-                                ],
+                              return MenuTile(
+                                icon: item["icon"] as IconData,
+                                title: item["title"] as String,
+                                onTap: item["onTap"] as VoidCallback,
+                                showDivider: index != menuItems.length - 1,
                               );
                             }),
                           ),
                         ),
-
-                        const SizedBox(height: 30),
+                        AppSpace.h24,
 
                         //  Logout Button
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                            ),
-                            onPressed: () {
-                              print("Logout Clicked");
-                            },
-                            child: const Text(
-                              "Logout",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
+                        PrimaryButton(text: "Logout", onPressed: () {}),
                       ],
                     ),
                   ),
@@ -244,31 +199,6 @@ class _AccountPageState extends State<AccountPage> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget buildRow(IconData icon, String title, VoidCallback onTap) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-        child: Row(
-          children: [
-            Icon(icon, color: Colors.orange),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            const Icon(Icons.arrow_forward_ios, size: 16),
-          ],
-        ),
       ),
     );
   }

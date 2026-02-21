@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:turfnpark/auth/Login_page.dart';
 import 'package:turfnpark/widgets/otp_widget.dart';
 import 'package:turfnpark/auth/confirm_password.dart';
+import 'package:turfnpark/widgets/primary_button.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -85,33 +86,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
                 const SizedBox(height: 30),
 
-                SizedBox(
-                  width: double.infinity,
-                  height: 52,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ConfirmPassword(),
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffF58220),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
+                PrimaryButton(
+                  text: "Submit",
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ConfirmPassword(),
                       ),
-                    ),
-                    child: const Text(
-                      "Submit",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 20),
 

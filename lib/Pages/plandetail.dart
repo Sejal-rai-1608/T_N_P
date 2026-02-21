@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:turfnpark/utils/app_text_styles.dart';
+import 'package:turfnpark/utils/spacing.dart';
 import 'package:turfnpark/widgets/appbar.dart';
 import 'package:turfnpark/widgets/covereage_section.dart';
 import 'package:turfnpark/widgets/plandetail_card.dart';
@@ -10,64 +12,47 @@ class PlanDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppbar(
-          leftImage: "assets/logo/Logo.svg",
-          rightImage: "assets/icons/notification.svg",
-        ),
-      ),
+      appBar: const CustomAppbar(leftImage: "assets/logo/Logo.svg"),
       body: Column(
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0, left: 8.0),
-                // child: Icon(
-                //   Icons.arrow_back,
-                //   size: 30,
-                //   fontWeight: FontWeight.w400,
-                //   color: const Color.fromARGB(255, 0, 0, 0),
-                // ),
-              ),
+              Padding(padding: const EdgeInsets.only(top: 16.0, left: 8.0)),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, top: 14.0),
-                child: Text(
-                  "Plan Details",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                ),
+                child: Text("Plan Details", style: AppTextStyles.mainTitle),
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          AppSpace.h10,
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                PlanDetailCard(
-                  imagePath: "assets/insurance/care.png",
-                  planName: "Care Supreme",
-                  coverAmount: "₹5 Lakhs",
-                  price: "₹716/months",
-                ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  PlanDetailCard(
+                    imagePath: "assets/insurance/care.png",
+                    planName: "Care Supreme",
+                    coverAmount: "₹5 Lakhs",
+                    price: "₹716/months",
+                  ),
 
-                const SizedBox(height: 20),
-
-                const SizedBox(height: 10),
-
-                CoverageSection(
-                  items: [
-                    "Single Private AC Room",
-                    "Restoration of cover",
-                    "No Claim Bonus",
-                    "Free health checkup",
-                    "Existing Illness cover",
-                    "Cashless Hospitalization",
-                    "Pre and post hospitalization",
-                  ],
-                ),
-              ],
+                  AppSpace.h10,
+                  CoverageSection(
+                    items: [
+                      "Single Private AC Room",
+                      "Restoration of cover",
+                      "No Claim Bonus",
+                      "Free health checkup",
+                      "Existing Illness cover",
+                      "Cashless Hospitalization",
+                      "Pre and post hospitalization",
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:turfnpark/utils/app_text_styles.dart';
+import 'package:turfnpark/utils/spacing.dart';
 import 'package:turfnpark/widgets/appbar.dart';
+import 'package:turfnpark/widgets/primary_button.dart';
 
 class HelpPage extends StatefulWidget {
   const HelpPage({super.key});
@@ -37,13 +40,9 @@ class _HelpPageState extends State<HelpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(48.h),
-        child: CustomAppbar(
-          leftImage: "assets/logo/Logo.svg",
-          rightImage: "assets/icons/notification.svg",
-          title: "Policy Plus",
-        ),
+      appBar: const CustomAppbar(
+        showBackButton: false,
+        leftImage: "assets/logo/Logo.svg",
       ),
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -53,28 +52,11 @@ class _HelpPageState extends State<HelpPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// 🔹 TITLE
-              Text(
-                "Help & Support",
-                style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-              ),
+              Text("Help & Support", style: AppTextStyles.mainTitle),
 
-              SizedBox(height: 6.h),
-
-              Text(
-                "We are here to help you",
-                style: TextStyle(fontSize: 15.sp, color: Colors.grey),
-              ),
-
-              SizedBox(height: 24.h),
+              AppSpace.h10,
 
               /// 🔹 CONTACT OPTIONS
-              Text(
-                "Contact Support",
-                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
-              ),
-
-              SizedBox(height: 14.h),
-
               _supportTile(
                 icon: Icons.phone,
                 title: "Call Us",
@@ -93,15 +75,15 @@ class _HelpPageState extends State<HelpPage> {
                 subtitle: "Chat with our support team",
               ),
 
-              SizedBox(height: 26.h),
+              AppSpace.h10,
 
               /// 🔹 FAQ TITLE
               Text(
                 "Frequently Asked Questions",
-                style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w600),
+                style: AppTextStyles.mainTitle,
               ),
 
-              SizedBox(height: 12.h),
+              AppSpace.h10,
 
               /// 🔹 FAQ LIST
               ListView.builder(
@@ -124,10 +106,7 @@ class _HelpPageState extends State<HelpPage> {
                         ListTile(
                           title: Text(
                             faqs[index]["q"]!,
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: AppTextStyles.fieldLabel,
                           ),
                           trailing: Icon(
                             isExpanded
@@ -149,6 +128,7 @@ class _HelpPageState extends State<HelpPage> {
                                 fontSize: 14.sp,
                                 color: Colors.grey.shade700,
                               ),
+                              softWrap: true,
                             ),
                           ),
                       ],
@@ -156,42 +136,20 @@ class _HelpPageState extends State<HelpPage> {
                   );
                 },
               ),
-
-              SizedBox(height: 30.h),
+              AppSpace.h14,
 
               /// 🔹 STILL NEED HELP
               Center(
                 child: Text(
                   "Still need help?",
-                  style: TextStyle(fontSize: 15.sp, color: Colors.grey),
+                  style: AppTextStyles.fieldLabel,
                 ),
               ),
 
-              SizedBox(height: 12.h),
+              AppSpace.h10,
+              PrimaryButton(text: "Contact Support", onPressed: () {}),
 
-              SizedBox(
-                width: double.infinity,
-                height: 50.h,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffF58220),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14.r),
-                    ),
-                  ),
-                  child: Text(
-                    "Contact Support",
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 20.h),
+              // AppSpace.h14,
             ],
           ),
         ),
@@ -214,18 +172,19 @@ class _HelpPageState extends State<HelpPage> {
         borderRadius: BorderRadius.circular(12.r),
         side: BorderSide(color: Colors.grey.shade200),
       ),
-      child: ListTile(
-        leading: CircleAvatar(
-          radius: 20.r,
-          backgroundColor: const Color(0xffF58220).withOpacity(.1),
-          child: Icon(icon, color: const Color(0xffF58220)),
+      child: Padding(
+        padding: EdgeInsets.only(left: 10.w),
+        child: ListTile(
+          contentPadding: EdgeInsets.symmetric(vertical: 8.h),
+          leading: CircleAvatar(
+            radius: 20.r,
+            backgroundColor: const Color(0xffF58220).withOpacity(.1),
+            child: Icon(icon, color: const Color(0xffF58220)),
+          ),
+          title: Text(title, style: AppTextStyles.fieldLabel),
+          subtitle: Text(subtitle, style: AppTextStyles.cardMeta),
+          onTap: () {},
         ),
-        title: Text(
-          title,
-          style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600),
-        ),
-        subtitle: Text(subtitle, style: TextStyle(fontSize: 13.sp)),
-        onTap: () {},
       ),
     );
   }

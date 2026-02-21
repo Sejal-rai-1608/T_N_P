@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:turfnpark/widgets/appbar.dart';
+import 'package:turfnpark/widgets/primary_button.dart';
 
 class BankDetailsPage extends StatelessWidget {
   const BankDetailsPage({super.key});
@@ -9,13 +10,7 @@ class BankDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-     appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppbar(
-          leftImage: "assets/logo/Logo.svg",
-          rightImage: "assets/icons/notification.svg",
-        ),
-      ),
+      appBar: const CustomAppbar(leftImage: "assets/logo/Logo.svg"),
 
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.w),
@@ -31,27 +26,7 @@ class BankDetailsPage extends StatelessWidget {
             SizedBox(height: 30.h),
 
             /// Save Button
-            SizedBox(
-              width: double.infinity,
-              height: 52.h,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14.r),
-                  ),
-                ),
-                child: Text(
-                  "Save Details",
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            PrimaryButton(text: "Save Details", onPressed: () {}),
           ],
         ),
       ),

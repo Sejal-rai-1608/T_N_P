@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:turfnpark/Pages/Profile.dart';
 import 'package:turfnpark/Pages/mainscreen.dart';
+import 'package:turfnpark/widgets/primary_button.dart';
 import '../auth/forgot_password.dart';
 import '../auth/register.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -128,33 +129,15 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 30.h),
 
               /// 🔥 Login Button
-              SizedBox(
-                width: double.infinity,
-                height: 52.h,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => MainScreen()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffF58220),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14.r),
-                    ),
-                  ),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+              PrimaryButton(
+                text: "Login",
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainScreen()),
+                  );
+                },
               ),
-
               SizedBox(height: 24.h),
 
               /// 🔥 Register
