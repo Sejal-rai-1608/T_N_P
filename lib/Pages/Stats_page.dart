@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
-class StatsPage extends StatelessWidget {
+class StatsPage extends StatefulWidget {
   const StatsPage({super.key});
 
+  @override
+  State<StatsPage> createState() => _StatsPageState();
+}
+
+class _StatsPageState extends State<StatsPage> {
   static const primaryOrange = Color(0xffF58220);
-  static const darkOrange = Color(0xffE65100);
-  static const lightOrange = Color(0xffFFB74D);
-  static const bgColor = Color(0xffFFF8F2);
+  static const bgColor = Color(0xffFFF6ED);
+
+  /// 🔥 Animated Values
+  List<double> values = [0, 0, 0, 0, 0, 0];
+
+  @override
+  void initState() {
+    super.initState();
+
+    /// Delay so animation visible
+    Future.delayed(const Duration(milliseconds: 400), () {
+      setState(() {
+        values = [12, 18, 15, 22, 17, 26];
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,51 +34,61 @@ class StatsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text("Dashboard", style: TextStyle(color: Colors.black)),
+        title: const Text(
+          "Dashboard",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+        ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            /// 🔥 TOTAL REVENUE CARD
+            /// 🔥 UNIQUE TOP CARD
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(22),
+              padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(22),
+                borderRadius: BorderRadius.circular(30),
                 gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [primaryOrange, darkOrange],
+                  colors: [Color(0xffF58220), Color(0xffFF9F45)],
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: primaryOrange.withOpacity(0.4),
-                    blurRadius: 20,
-                    offset: const Offset(0, 10),
-                  ),
-                ],
               ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Stack(
                 children: [
-                  Text(
-                    "Total Revenue",
-                    style: TextStyle(color: Colors.white70, fontSize: 14),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    "₹4,89,400",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
+                  Positioned(
+                    right: -40,
+                    top: -40,
+                    child: Container(
+                      height: 140,
+                      width: 140,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white.withOpacity(0.08),
+                      ),
                     ),
                   ),
-                  SizedBox(height: 6),
-                  Text(
-                    "+18% this month",
-                    style: TextStyle(color: Colors.white70, fontSize: 13),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Total Revenue",
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text(
+                        "₹ 4,89,400",
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      const Text(
+                        "+18% this month",
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -68,39 +96,38 @@ class StatsPage extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            /// 📊 MODERN GRAPH CARD
+            /// 📊 ANIMATED GRAPH CARD
             Container(
-              padding: const EdgeInsets.all(18),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(22),
-                boxShadow: const [
-                  BoxShadow(color: Colors.black12, blurRadius: 15),
-                ],
+                borderRadius: BorderRadius.circular(24),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
                     "Revenue Overview",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 20),
                   SizedBox(
-                    height: 240,
+                    height: 220,
                     child: BarChart(
                       BarChartData(
                         alignment: BarChartAlignment.spaceAround,
                         maxY: 30,
                         borderData: FlBorderData(show: false),
-                        gridData: FlGridData(
-                          show: true,
-                          drawVerticalLine: false,
-                          horizontalInterval: 10,
-                        ),
+                        gridData: FlGridData(show: false),
                         titlesData: FlTitlesData(
                           leftTitles: AxisTitles(
-                            sideTitles: SideTitles(showTitles: true),
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          rightTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          topTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
                           ),
                           bottomTitles: AxisTitles(
                             sideTitles: SideTitles(
@@ -115,7 +142,7 @@ class StatsPage extends StatelessWidget {
                                   "Jun",
                                 ];
                                 return Padding(
-                                  padding: const EdgeInsets.only(top: 8),
+                                  padding: const EdgeInsets.only(top: 6),
                                   child: Text(
                                     months[value.toInt()],
                                     style: const TextStyle(fontSize: 12),
@@ -124,22 +151,14 @@ class StatsPage extends StatelessWidget {
                               },
                             ),
                           ),
-                          topTitles: AxisTitles(
-                            sideTitles: SideTitles(showTitles: false),
-                          ),
-                          rightTitles: AxisTitles(
-                            sideTitles: SideTitles(showTitles: false),
-                          ),
                         ),
-                        barGroups: [
-                          makeBar(0, 12),
-                          makeBar(1, 18),
-                          makeBar(2, 15),
-                          makeBar(3, 22),
-                          makeBar(4, 17),
-                          makeBar(5, 26),
-                        ],
+                        barGroups: List.generate(
+                          values.length,
+                          (index) => makeBar(index, values[index]),
+                        ),
                       ),
+                      swapAnimationDuration: const Duration(milliseconds: 900),
+                      swapAnimationCurve: Curves.easeOutCubic,
                     ),
                   ),
                 ],
@@ -148,14 +167,14 @@ class StatsPage extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            /// 🎨 4 GRADIENT CARDS
+            /// 🫧 BUBBLE CARDS
             GridView.count(
               crossAxisCount: 2,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 1.15,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+              childAspectRatio: 1,
               children: const [
                 DashboardCard(
                   title: "Total Agents",
@@ -191,15 +210,12 @@ class StatsPage extends StatelessWidget {
       barRods: [
         BarChartRodData(
           toY: y,
-          width: 18,
-          borderRadius: BorderRadius.circular(12),
+          width: 16,
+          borderRadius: BorderRadius.circular(20),
           gradient: const LinearGradient(
+            colors: [Color(0xffF58220), Color(0xffFFD1A3)],
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
-            colors: [
-              Color.fromARGB(255, 250, 138, 40),
-              Color.fromARGB(255, 246, 174, 68),
-            ],
           ),
         ),
       ],
@@ -207,6 +223,7 @@ class StatsPage extends StatelessWidget {
   }
 }
 
+/// 🫧 Bubble Dashboard Cards
 class DashboardCard extends StatelessWidget {
   final String title;
   final String value;
@@ -220,46 +237,49 @@ class DashboardCard extends StatelessWidget {
   });
 
   static const primaryOrange = Color(0xffF58220);
-  static const lightOrange = Color(0xffFFB74D);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(18),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(32),
         gradient: const LinearGradient(
-          colors: [primaryOrange, lightOrange],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+          colors: [Color(0xffFFE5D0), Color(0xffFFD1B0)],
         ),
         boxShadow: [
           BoxShadow(
-            color: primaryOrange.withOpacity(0.4),
-            blurRadius: 15,
-            offset: const Offset(0, 8),
+            color: Colors.orange.withOpacity(0.15),
+            blurRadius: 20,
+            offset: const Offset(0, 12),
           ),
         ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.white),
+          Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.6),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, color: primaryOrange, size: 24),
+          ),
           const Spacer(),
           Text(
             value,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
+          const SizedBox(height: 6),
           Text(
             title,
-            style: const TextStyle(color: Colors.white70, fontSize: 13),
+            style: const TextStyle(fontSize: 13, color: Colors.black54),
           ),
         ],
       ),
     );
   }
 }
+  

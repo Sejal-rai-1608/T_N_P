@@ -5,13 +5,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:turfnpark/Pages/Stats_page.dart';
 
 import 'package:turfnpark/Categories Sub_Pages/insurance_page.dart';
+import 'package:turfnpark/Pages/all_plans_page.dart';
 import 'package:turfnpark/utils/spacing.dart';
 import 'package:turfnpark/widgets/appbar.dart';
 import 'package:turfnpark/widgets/outlined_button.dart';
 import 'package:turfnpark/widgets/policy_card.dart';
 import 'package:turfnpark/widgets/categories.dart';
 import 'package:turfnpark/utils/app_text_styles.dart';
-import 'all_plans_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,20 +22,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int bannerIndex = 0;
-  int plansIndex = 0;
+  int Index = 0;
 
   /// 🔹 Top banners
   final List<String> banners = [
-    'assets/images/Banner.svg',
-    'assets/images/Banner.svg',
-    'assets/images/Banner.svg',
+    'assets/images/Banner.jpg',
+    'assets/images/Banner.jpg',
+    'assets/images/Banner.jpg',
   ];
 
   final List<Map<String, String>> policyFeatures = [
     {
       "emoji": "📊",
-      "title": "Compare Plans",
-      "desc": "Compare insurance plans side by side.",
+      "title": "Compare ",
+      "desc": "Compare insurance  side by side.",
     },
     {
       "emoji": "💰",
@@ -49,11 +49,11 @@ class _HomePageState extends State<HomePage> {
     },
   ];
 
-  /// 🔹 Plans banners
-  final List<String> plansBanners = [
-    "assets/images/Plans Banner.svg",
-    "assets/images/Plans Banner.svg",
-    "assets/images/Plans Banner.svg",
+  /// 🔹  banners
+  final List<String> Banners = [
+    "assets/images/banner1.jpg",
+    "assets/images/banner2.jpg",
+    "assets/images/banner3.jpg",
   ];
 
   /// 🔹 Insurance categories
@@ -78,8 +78,8 @@ class _HomePageState extends State<HomePage> {
       "image": "assets/images/familyinsurance.png",
       "title": "Family\nInsurance",
     },
-    {"image": "assets/images/investmentplan.png", "title": "Investment\nPlans"},
-    {"image": "assets/images/employeeplan.png", "title": "Employee\nPlans"},
+    {"image": "assets/images/investmentplan.png", "title": "Investment\n"},
+    {"image": "assets/images/employeeplan.png", "title": "Employee\n"},
     {"image": "assets/images/carinsurance.png", "title": "Car\nInsurance"},
   ];
 
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
 
               /// 🔹 View all button
               OutlinedButtonWidget(
-                text: "View All Plans",
+                text: "View All ",
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -156,12 +156,12 @@ class _HomePageState extends State<HomePage> {
 
               AppSpace.h10,
 
-              /// 🔹 Popular Plans
+              /// 🔹 Popular
               Text("Popular Plus", style: AppTextStyles.subTitle),
               AppSpace.h10,
 
-              _buildCarousel(plansBanners, plansIndex, (i) {
-                setState(() => plansIndex = i);
+              _buildCarousel(Banners, Index, (i) {
+                setState(() => Index = i);
               }, height: 115.h),
             ],
           ),
