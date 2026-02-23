@@ -2,11 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:turfnpark/AccountSub_pages/agent_page.dart';
 import 'package:turfnpark/AccountSub_pages/bank_detail_page.dart';
 import 'package:turfnpark/AccountSub_pages/change_password.dart';
 import 'package:turfnpark/AccountSub_pages/my_policies_page.dart';
 import 'package:turfnpark/AccountSub_pages/payment_history_page.dart';
-import 'package:turfnpark/Pages/agent_page.dart';
+import 'package:turfnpark/Pages/agent_page.dart' hide AgentPage;
 import 'package:turfnpark/utils/app_text_styles.dart';
 import 'package:turfnpark/utils/spacing.dart';
 import 'package:turfnpark/widgets/app_card.dart';
@@ -195,13 +196,12 @@ class _AccountPageState extends State<AccountPage> {
                           ),
                           AppSpace.h24,
 
-                          //  Logout Button
+                          PrimaryButton(text: "Logout", onPressed: () {}),
                         ],
                       ),
                     ),
                   ),
                 ),
-                PrimaryButton(text: "Logout", onPressed: () {}),
               ],
             ),
           ),

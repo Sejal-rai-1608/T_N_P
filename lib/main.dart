@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:turfnpark/Auth/get_started_page.dart';
 import 'package:turfnpark/Pages/mainscreen.dart';
-import 'package:turfnpark/Pages/Profile.dart';
+import 'package:turfnpark/Pages/Home.dart';
 // import 'package:turfnpark/pages/confirm_password.dart';
 // import 'package:turfnpark/pages/forgot_password.dart';
 //import 'package:turfnpark/pages/get_started_page.dart';

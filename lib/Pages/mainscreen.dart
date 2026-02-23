@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:turfnpark/Pages/Profile.dart';
+import 'package:turfnpark/Pages/Home.dart';
 import 'package:turfnpark/Pages/claim_page.dart';
 import 'package:turfnpark/Pages/Plans.dart';
 import 'package:turfnpark/Pages/acoount_page.dart';
@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
 
   /// Screens (IndexedStack preserves state)
   final List<Widget> _screens = const [
-    Profile(),
+    HomePage(),
     ClaimPage(),
     Plans(),
     AccountPage(),

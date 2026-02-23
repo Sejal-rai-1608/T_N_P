@@ -193,4 +193,8 @@ Widget infoRow(String label, String? value) {
       ],
     ),
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f43fb62877287aacb157ed1b7bba5a1c7a10175a

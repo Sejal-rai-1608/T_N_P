@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:turfnpark/Pages/Profile.dart';
+import 'package:turfnpark/Pages/Home.dart';
 import 'package:turfnpark/Pages/mainscreen.dart';
 import 'package:turfnpark/widgets/primary_button.dart';
 import '../auth/forgot_password.dart';
